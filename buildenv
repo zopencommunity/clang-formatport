@@ -1,0 +1,91 @@
+# bump: clang-format-version /CLANG_FORMAT_VERSION="(.*)"/ https://github.com/llvm/llvm-project.git|semver:*
+export CLANG_FORMAT_VERSION="20.1.8"
+export ZOPEN_STABLE_TAG="llvmorg-${CLANG_FORMAT_VERSION}"
+
+###
+### Build control file for the clang-format port
+###
+
+###
+### Required Environment Variables
+###
+
+export ZOPEN_BUILD_LINE="STABLE"
+
+# STABLE Build
+export ZOPEN_STABLE_URL="https://github.com/llvm/llvm-project.git"
+export ZOPEN_STABLE_DEPS="cmake make ninja check_python"
+
+# DEV Build 
+export ZOPEN_DEV_URL="https://github.com/llvm/llvm-project.git"
+export ZOPEN_DEV_DEPS="cmake make ninja check_python"
+
+export ZOPEN_CATEGORIES="development"
+export ZOPEN_RUNTIME_DEPS=""
+export ZOPEN_SYSTEM_PREREQ=""
+
+###
+### Build stage control environment variables
+###
+
+export ZOPEN_CONFIGURE="cmake"
+export ZOPEN_CONFIGURE_OPTS="-S llvm -B build -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DLLVM_ENABLE_PROJECTS=clang \
+  -DLLVM_TOOL_CLANG_FORMAT_BUILD=ON \
+  -DLLVM_TARGETS_TO_BUILD=host"
+
+export ZOPEN_MAKE="zopen_build"
+export ZOPEN_CHECK="zopen_check"
+export ZOPEN_INSTALL="zopen_install"
+
+###
+### Required user-supplied functions
+###
+
+zopen_build()
+{
+  ninja -C build -j $ZOPEN_NUM_JOBS clang-format
+}
+
+zopen_check()
+{
+  # Nothing to check at this time
+}
+
+zopen_check_results()
+{
+  echo "check_result"
+  if [ -x "$ZOPEN_INSTALL_DIR/bin/clang-format" ]; then
+    echo "actualFailures:0"
+    echo "totalTests:1"
+    echo "expectedFailures:0"
+    echo "expectedTotalTests:1"
+  else
+    echo "actualFailures:1"
+    echo "totalTests:1"
+    echo "expectedFailures:0"
+    echo "expectedTotalTests:1"
+  fi
+}
+
+zopen_get_version()
+{
+  "$ZOPEN_INSTALL_DIR/bin/clang-format" --version | awk '{print $3}'
+}
+
+###
+### Optional hooks
+###
+
+zopen_pre_install()
+{
+  echo "pre install"
+  mkdir -p "$ZOPEN_INSTALL_DIR/bin"
+}
+
+zopen_install()
+{
+  echo "install"
+  cp build/bin/clang-format "$ZOPEN_INSTALL_DIR/bin/"
+}
