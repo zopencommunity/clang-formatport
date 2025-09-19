@@ -9,6 +9,7 @@ export ZOPEN_STABLE_TAG="llvmorg-${CLANG_FORMAT_VERSION}"
 ###
 ### Required Environment Variables
 ###
+export ZOPEN_NAME="clang-format"
 
 export ZOPEN_CATEGORIES="development"
 
