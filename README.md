@@ -1,4 +1,4 @@
-[![Automatic version updates](https://github.com/zopencommunity/clang-formatport/actions/workflows/bump.yml/badge.svg)](https://github.com/ZOSOpenTools/clang-formatport/actions/workflows/bump.yml)
+[![Automatic version updates](https://github.com/zopencommunity/clang-formatport/actions/workflows/bump.yml/badge.svg)](https://github.com/zopencommunity/clang-formatport/actions/workflows/bump.yml)
 
 # clang-format
 
