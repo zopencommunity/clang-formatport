@@ -1,5 +1,5 @@
 # bump: clang-format-version /CLANG_FORMAT_VERSION="(.*)"/ https://github.com/llvm/llvm-project.git|semver:*
-export CLANG_FORMAT_VERSION="21.1.6"
+export CLANG_FORMAT_VERSION="21.1.7"
 export ZOPEN_STABLE_TAG="llvmorg-${CLANG_FORMAT_VERSION}"
 
 ###
