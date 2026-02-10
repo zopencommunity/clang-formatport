@@ -41,6 +41,7 @@ export ZOPEN_CONFIGURE_OPTS="-S llvm -B build -G Ninja \
   -DLLVM_TARGETS_TO_BUILD=host"
 
 export ZOPEN_EXTRA_CXXFLAGS="-mzos-target=zosv3r1"
+export ZOPEN_EXTRA_CFLAGS="-mzos-target=zosv3r1"
 
 export ZOPEN_CLEAN="zopen_clean"
 export ZOPEN_MAKE="zopen_build"
