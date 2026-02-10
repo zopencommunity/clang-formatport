@@ -40,6 +40,8 @@ export ZOPEN_CONFIGURE_OPTS="-S llvm -B build -G Ninja \
   -DLLVM_CCACHE_BUILD=ON \
   -DLLVM_TARGETS_TO_BUILD=host"
 
+export ZOPEN_EXTRA_CXXFLAGS="-mzos-target=zosv3r1"
+
 export ZOPEN_CLEAN="zopen_clean"
 export ZOPEN_MAKE="zopen_build"
 export ZOPEN_CHECK="zopen_check"
